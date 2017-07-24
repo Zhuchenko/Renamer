@@ -7,8 +7,8 @@ namespace RenamerMP3Library
     {
         public bool Rename(IMP3File file)
         {
-            var artist = file.GetArtistTag();
-            var title = file.GetTitleTag();
+            var artist = file.Artist;
+            var title = file.Title;
 
             if (String.IsNullOrEmpty(artist) || String.IsNullOrEmpty(title))
             {
@@ -16,7 +16,10 @@ namespace RenamerMP3Library
             }
 
             var newName = artist + " - " + title;
-            file.ChangeName(newName);
+
+            file.Name = newName;
+
+            file.SaveChanges();
 
             return true;
         }

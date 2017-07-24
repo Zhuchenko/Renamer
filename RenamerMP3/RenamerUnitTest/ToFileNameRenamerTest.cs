@@ -19,7 +19,7 @@ namespace RenamerUnitTest
             Assert.IsTrue(isSuccessful);
             
             var expectedName = artist + " - " + title;
-            var actual = mp3File.GetName();
+            var actual = mp3File.Name;
             Assert.AreEqual(expectedName, actual);
         }
 
@@ -37,7 +37,8 @@ namespace RenamerUnitTest
             Assert.IsFalse(isSuccessful);
 
             var expectedName = name;
-            var actual = mp3File.GetName();
+            var actual = mp3File.Name;
+
             Assert.AreEqual(expectedName, actual);
         }
     }

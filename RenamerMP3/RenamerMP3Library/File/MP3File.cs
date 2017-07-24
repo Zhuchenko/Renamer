@@ -4,45 +4,79 @@ namespace RenamerMP3Library
 {
     public class MP3File: IMP3File
     {
-        private FilePath _path;
+        private string _fullPath;
         private TagLib.File _tagFile;
+
+        private string _newPath;
 
         public MP3File(string path)
         {
-            _path = new FilePath(path);
+            _fullPath = path;
             _tagFile = TagLib.File.Create(path);
+            _newPath = null;
+        }
+
+        public string Name
+        {
+            get
+            {
+                var currentPath = (_newPath != null) ? _newPath : _fullPath;
+
+                var startIndexOfName = currentPath.LastIndexOf("\\") + 1;
+                var lengthOfName = currentPath.LastIndexOf('.') - startIndexOfName;
+
+                return currentPath.Substring(startIndexOfName, lengthOfName);
+            }
+
+            set 
+            {
+                var currentPath = (_newPath != null) ? _newPath : _fullPath;
+
+                var lengthOfPath = currentPath.LastIndexOf("\\") + 1;
+                var pathWithoutName = currentPath.Substring(0, lengthOfPath);
+
+                var startIndexOfExtension = currentPath.LastIndexOf('.');
+                var extension = currentPath.Substring(startIndexOfExtension);
+
+                _newPath = pathWithoutName + value + extension;
+            }
         }
        
-        public void ChangeName(string newName)
+        public string Artist
         {
-            var oldFullPath = _path.Full;
-            _path.ChangeName(newName);
+            get
+            {
+                return _tagFile.Tag.Performers[0];
+            }
 
-            var newFullPath = _path.Full;
-            System.IO.File.Move(oldFullPath, newFullPath);
+            set
+            {
+                _tagFile.Tag.Performers[0] = value;
+            }
         }
 
-        public void ChangeTags(string artist, string title)
+        public string Title
         {
-            _tagFile.Tag.Performers[0] = artist;
-            _tagFile.Tag.Title = title;
+            get
+            {
+                return _tagFile.Tag.Title;
+            }
 
+            set
+            {
+                _tagFile.Tag.Title = value;
+            }
+        }
+
+        public void SaveChanges()
+        {
             _tagFile.Save();
-        }
 
-        public string GetName()
-        {
-            return _path.Name;
-        }
+            if (_newPath == null)
+                return;
 
-        public string GetArtistTag()
-        {
-            return _tagFile.Tag.Performers[0];
-        }
-
-        public string GetTitleTag()
-        {
-            return _tagFile.Tag.Title;
+            System.IO.File.Move(_fullPath, _newPath);
+            _newPath = null;
         }
     }
 }

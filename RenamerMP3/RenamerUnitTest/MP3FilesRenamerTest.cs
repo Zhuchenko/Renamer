@@ -17,7 +17,7 @@ namespace RenamerUnitTest
 
             var renamer = new ToTagRenamer();
 
-            var mp3FilesRenamer = new MP3FilesRenamer(finder, renamer);
+            var mp3FilesRenamer = new MP3FilesRenamingProcessor(finder, renamer);
 
             var actual = mp3FilesRenamer.Rename();
             var expected = new[] { successful, failed };
@@ -35,7 +35,7 @@ namespace RenamerUnitTest
 
             var renamer = new ToFileNameRenamer();
 
-            var mp3FilesRenamer = new MP3FilesRenamer(finder, renamer);
+            var mp3FilesRenamer = new MP3FilesRenamingProcessor(finder, renamer);
 
             var actual = mp3FilesRenamer.Rename();
             var expected = new[] { successful, failed };
@@ -53,7 +53,7 @@ namespace RenamerUnitTest
 
             var renamer = new ToTagRenamer();
 
-            var mp3FilesRenamer = new MP3FilesRenamer(finder, renamer);
+            var mp3FilesRenamer = new MP3FilesRenamingProcessor(finder, renamer);
 
             var actual = mp3FilesRenamer.Rename();
             var expected = new[] { successful, failed };
@@ -71,7 +71,7 @@ namespace RenamerUnitTest
 
             var renamer = new ToFileNameRenamer();
 
-            var mp3FilesRenamer = new MP3FilesRenamer(finder, renamer);
+            var mp3FilesRenamer = new MP3FilesRenamingProcessor(finder, renamer);
 
             var actual = mp3FilesRenamer.Rename();
             var expected = new[] { successful, failed };

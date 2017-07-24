@@ -7,7 +7,7 @@ namespace RenamerMP3Library
     {
         public bool Rename(IMP3File file)
         {
-            var name = file.GetName();
+            var name = file.Name;
             var indexOfDelimiter = name.IndexOf('-');
 
             if (indexOfDelimiter == -1)
@@ -23,7 +23,10 @@ namespace RenamerMP3Library
                 return false;
             }
 
-            file.ChangeTags(artist, title);
+            file.Artist = artist;
+            file.Title = title;
+
+            file.SaveChanges();
 
             return true;
         }

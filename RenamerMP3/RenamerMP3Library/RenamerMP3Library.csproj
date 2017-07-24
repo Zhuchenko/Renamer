@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="File\FileFinder.cs" />
-    <Compile Include="File\FilePath.cs" />
     <Compile Include="File\IFileFinder.cs" />
     <Compile Include="File\IMP3File.cs" />
     <Compile Include="Renamer\IRenamer.cs" />

@@ -2,12 +2,12 @@
 
 namespace RenamerMP3Library.Renamer
 {
-    public class MP3FilesRenamer
+    public class MP3FilesRenamingProcessor
     {
         private IFileFinder _finder;
         private IRenamer _renamer;
 
-        public MP3FilesRenamer(IFileFinder finder, IRenamer renamer)
+        public MP3FilesRenamingProcessor(IFileFinder finder, IRenamer renamer)
         {
             _finder = finder;
             _renamer = renamer;

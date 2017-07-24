@@ -8,37 +8,79 @@ namespace RenamerUnitTest
         private string _artist;
         private string _title;
 
+        private string _newName;
+        private string _newArtist;
+        private string _newTitle;
+
         public MP3FileForTest(string name = "", string artist = "", string title = "")
         {
             _name = name;
             _artist = artist;
             _title = title;
+
+            _newName = null;
+            _newArtist = null;
+            _newTitle = null;
         }
 
-        public string GetName()
+        public string Name
         {
-            return _name;
+            get
+            {
+                return (_newName != null) ? _newName : _name;
+            }
+
+            set
+            {
+                _newName = value;
+            }
         }
 
-        public string GetArtistTag()
+        public string Artist
         {
-            return _artist;
+            get
+            {
+                return (_newArtist != null) ? _newArtist : _artist;
+            }
+
+            set
+            {
+                _newArtist = value;
+            }
         }
 
-        public string GetTitleTag()
+        public string Title
         {
-            return _title;
+            get
+            {
+                return (_newTitle != null) ? _newTitle : _title;
+            }
+
+            set
+            {
+                _newTitle = value;
+            }
         }
 
-        public void ChangeName(string newName)
+        public void SaveChanges()
         {
-            _name = newName;
-        }
+            if (_newName != null)
+            {
+                _name = _newName;
+                _newName = null;
+            }
 
-        public void ChangeTags(string artist, string title)
-        {
-            _artist = artist;
-            _title = title;
+            if (_newArtist != null)
+            {
+                _artist = _newArtist;
+                _newArtist = null;
+            }
+
+            if (_newTitle != null)
+            {
+                _title = _newTitle;
+                _newTitle = null;
+            }
         }
     }
 }

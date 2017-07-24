@@ -19,8 +19,8 @@ namespace RenamerUnitTest
             var isSuccessful = renamer.Rename(mp3File);
             Assert.IsTrue(isSuccessful);
             
-            var actualArtist = mp3File.GetArtistTag();
-            var actualTitle = mp3File.GetTitleTag();
+            var actualArtist = mp3File.Artist;
+            var actualTitle = mp3File.Title;
 
             Assert.AreEqual(expectedArtist, actualArtist);
             Assert.AreEqual(expectedTitle, actualTitle);
@@ -39,8 +39,8 @@ namespace RenamerUnitTest
             var isSuccessful = renamer.Rename(mp3File);
             Assert.IsFalse(isSuccessful);
 
-            var actualArtist = mp3File.GetArtistTag();
-            var actualTitle = mp3File.GetTitleTag();
+            var actualArtist = mp3File.Artist;
+            var actualTitle = mp3File.Title;
 
             Assert.AreEqual(expectedArtist, actualArtist);
             Assert.AreEqual(expectedTitle, actualTitle);

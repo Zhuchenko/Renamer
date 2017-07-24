@@ -2,11 +2,10 @@
 {
     public interface IMP3File
     {
-        void ChangeName(string newName);
-        void ChangeTags(string artist, string title);
+        string Name { get; set; }
+        string Artist { get; set; }
+        string Title { get; set; }
 
-        string GetName();
-        string GetArtistTag();
-        string GetTitleTag();
+        void SaveChanges();
     }
 }

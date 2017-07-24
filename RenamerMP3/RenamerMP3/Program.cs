@@ -20,7 +20,7 @@ namespace RenamerMP3
                 return;
             }
 
-            var mp3Renamer = new MP3FilesRenamer(finder, renamer);
+            var mp3Renamer = new MP3FilesRenamingProcessor(finder, renamer);
 
             var output = mp3Renamer.Rename();
 
